@@ -6,6 +6,7 @@ require 'anemone/exceptions'
 require 'anemone/page_store'
 require 'anemone/storage'
 require 'anemone/storage/base'
+require 'anemone/proxy_list'
 
 module Anemone
 
