@@ -54,6 +54,8 @@ module Anemone
       :proxy_host => nil,
       # proxy server port number
       :proxy_port => false,
+      # array of proxies to cycle through
+      :proxy_list => nil,
       # HTTP read timeout in seconds
       :read_timeout => nil
     }
