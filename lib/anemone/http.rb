@@ -73,19 +73,12 @@ module Anemone
     def accept_cookies?
       @opts[:accept_cookies]
     end
-
+    
     #
-    # The proxy address string
+    # The proxy list
     #
-    def proxy_host
-      @opts[:proxy_host]
-    end
-
-    #
-    # The proxy port
-    #
-    def proxy_port
-      @opts[:proxy_port]
+    def proxy_list
+      @opts[:proxy_list]
     end
 
     #
@@ -139,7 +132,7 @@ module Anemone
         response = connection(url).request(req)
         finish = Time.now()
         response_time = ((finish - start) * 1000).round
-        @cookie_store.merge!(response['Set-Cookie']) if accept_cookies?
+        @cookie_store.merge!(response['Sget_nextet-Cookie']) if accept_cookies?
         return response, response_time
       rescue Timeout::Error, Net::HTTPBadResponse, EOFError => e
         puts e.inspect if verbose?
@@ -160,7 +153,8 @@ module Anemone
     end
 
     def refresh_connection(url)
-      http = Net::HTTP.new(url.host, url.port, proxy_host, proxy_port)
+      proxy_list.get_next
+      http = Net::HTTP.new(url.host, url.port, proxy_list.host, proxy_list.port)
 
       http.read_timeout = read_timeout if !!read_timeout
 

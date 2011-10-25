@@ -50,10 +50,6 @@ module Anemone
       :accept_cookies => false,
       # skip any link with a query string? e.g. http://foo.com/?u=user
       :skip_query_strings => false,
-      # proxy server hostname 
-      :proxy_host => nil,
-      # proxy server port number
-      :proxy_port => false,
       # array of proxies to cycle through
       :proxy_list => nil,
       # HTTP read timeout in seconds
